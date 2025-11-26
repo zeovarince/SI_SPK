@@ -33,7 +33,7 @@ if($_SESSION['status'] != "login"){
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.php">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="data_kriteria.php">Data Kriteria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="data_petani.php">Data Petani</a></li>
+                    <li class="nav-item"><a class="nav-link" href="data_petani.php">Petani (Alternatif)</a></li>
                     <li class="nav-item"><a class="nav-link" href="hasil.php">Hasil Perhitungan</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-danger btn-sm text-white ms-3 px-3" href="logout.php">Logout</a></li>
                 </ul>

@@ -14,10 +14,11 @@ $d = mysqli_fetch_array($data);
 <body class="bg-light">
     <div class="container mt-5" style="max-width: 500px;">
         <div class="card shadow">
-            <div class="card-header bg-primary text-white">Edit Kriteria <?php echo $d['kode']; ?></div>
+            <div class="card-header bg-primary text-white">Edit Kriteria <b><?php echo $d['kode']; ?></b></div>
             <div class="card-body">
-                <form action="proses_kriteria.php" method="POST">
+                <form action="proses_kriteria.php?aksi=edit" method="POST">
                     <input type="hidden" name="kode" value="<?php echo $d['kode']; ?>">
+                    
                     <div class="mb-3">
                         <label>Nama Kriteria</label>
                         <input type="text" name="nama" class="form-control" value="<?php echo $d['nama']; ?>" required>
@@ -25,16 +26,16 @@ $d = mysqli_fetch_array($data);
                     <div class="mb-3">
                         <label>Sifat</label>
                         <select name="sifat" class="form-select">
-                            <option value="Cost" <?php if($d['sifat']=='Cost') echo 'selected'; ?>>Cost</option>
-                            <option value="Benefit" <?php if($d['sifat']=='Benefit') echo 'selected'; ?>>Benefit</option>
+                            <option value="Cost" <?php if($d['sifat']=='Cost') echo 'selected'; ?>>Cost (Biaya)</option>
+                            <option value="Benefit" <?php if($d['sifat']=='Benefit') echo 'selected'; ?>>Benefit (Keuntungan)</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label>Bobot (Desimal, cth: 0.2)</label>
+                        <label>Bobot (Desimal)</label>
                         <input type="number" step="0.01" name="bobot" class="form-control" value="<?php echo $d['bobot']; ?>" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Simpan Perubahan</button>
-                    <a href="data_kriteria.php" class="btn btn-secondary">Batal</a>
+                    <button type="submit" class="btn btn-primary w-100">Update Perubahan</button>
+                    <a href="data_kriteria.php" class="btn btn-light w-100 mt-2">Batal</a>
                 </form>
             </div>
         </div>
