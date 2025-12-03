@@ -47,20 +47,26 @@ if($_SESSION['status'] != "login"){ header("location:login.php"); }
                         <tbody>
                             <?php
                             $no = 1;
-                            $data = mysqli_query($koneksi, "SELECT * FROM alternatif ORDER BY id ASC");
+                            // Join tabel biar nama petani muncul
+                            $query = "SELECT tb_petani.id_petani, tb_petani.nama_petani, alternatif.* FROM alternatif 
+                                    JOIN tb_petani ON alternatif.id_petani = tb_petani.id_petani 
+                                    ORDER BY tb_petani.id_petani ASC";
+                                    
+                            $data = mysqli_query($koneksi, $query);
                             while($d = mysqli_fetch_array($data)){
                             ?>
                             <tr>
                                 <td class="text-center"><?php echo $no++; ?></td>
-                                <td><?php echo $d['nama']; ?></td>
+                                <td><?php echo $d['nama_petani']; ?></td> 
+                                
                                 <td class="text-end">Rp <?php echo number_format($d['c1']); ?></td>
                                 <td class="text-end">Rp <?php echo number_format($d['c2']); ?></td>
                                 <td class="text-center"><?php echo $d['c3']; ?> Ton</td>
                                 <td class="text-end">Rp <?php echo number_format($d['c4']); ?></td>
                                 <td class="text-center"><?php echo $d['c5']; ?> Ha</td>
-                                <td class="text-center" width="150px">
-                                    <a href="edit_petani.php?id=<?php echo $d['id']; ?>" class="btn btn-warning btn-sm text-white">Edit</a>
-                                    <a href="proses_petani.php?aksi=hapus&id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                                <td class="text-center">
+                                    <a href="edit_petani.php?id=<?php echo $d['id_petani']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="proses_petani.php?aksi=hapus&id=<?php echo $d['id_petani']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>

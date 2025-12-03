@@ -11,7 +11,11 @@ class SmartSPK {
 
     public function hitung() {
         $data = [];
-        $result = $this->koneksi->query("SELECT * FROM alternatif");
+        // Gunakan JOIN untuk mengambil nama dari tb_petani
+        $query = "SELECT tb_petani.nama_petani AS nama, alternatif.* FROM alternatif 
+                  JOIN tb_petani ON alternatif.id_petani = tb_petani.id_petani";
+                  
+        $result = $this->koneksi->query($query);
         
         while ($row = $result->fetch_assoc()) {
             $data[] = $row;
